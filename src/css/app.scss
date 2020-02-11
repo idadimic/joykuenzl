@@ -14,11 +14,22 @@ h2 {
     text-transform: uppercase;
     font-size: 120px;
     line-height: .75;
+    text-shadow:
+    -1px -1px 0 $pink,  
+    1px -1px 0 $pink,
+    -1px 1px 0 $pink,
+    1px 1px 0 $pink;
 }
 h3 {
     text-transform: uppercase;
+    letter-spacing: 0.015em;
     font-size: 110px;
     line-height: .75;
+    text-shadow:
+    -1px -1px 0 $pink,  
+    1px -1px 0 $pink,
+    -1px 1px 0 $pink,
+    1px 1px 0 $pink;
 }
 h4 {
     font-size: 80px;
@@ -136,6 +147,7 @@ section.clients {
                 }
                 .hover-image {
                     position: fixed;
+                    z-index: 4;
                     pointer-events: none;
                     top: 50%;
                     left: 50%;
@@ -190,10 +202,20 @@ footer {
     }
 }
 
-.part {
+.f-part {
     opacity: 0;
     transform: translateY(30px);
-    transition: all ease .5s;
+    transition: all ease .6s;
+    &.in-viewport {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.part {
+    opacity: 0;
+    transform: translateY(70px);
+    transition: all ease .8s;
     &.in-viewport {
         opacity: 1;
         transform: translateY(0);

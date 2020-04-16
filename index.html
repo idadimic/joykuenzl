@@ -6,6 +6,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="https://fonts.googleapis.com/css?family=Montserrat|Playfair+Display:400,700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
         <link rel="stylesheet" href="app.css">
     </head>
 
@@ -21,19 +22,32 @@
                         <a href="about.html" class="nav-link">About</a>
                     </nav>
                 </div>
+                <div class="mobile-nav">
+                    <span></span>
+                    <span></span>
+                </div>
             </div>
         </header>
 
+        <div class="mobile-menu">
+            <div class="mobile-menu-inner">
+                <nav>
+                    <a href="index.html" class="nav-link">Work</a>
+                    <a href="about.html" class="nav-link">About</a>
+                </nav>
+            </div>
+        </div>
+
         <section class="services">
             <div class="services-inner container-fluid">
-                <div class="service-content">
-                    <div class="service part">
+                <div class="service-content" data-aos="fade-in" data-aos-delay="250">
+                    <div class="service">
                         <h2>E-Commerce</h2>
                     </div>
-                    <div class="service part">
+                    <div class="service">
                         <h2>Branding</h2>
                     </div>
-                    <div class="service part">
+                    <div class="service">
                         <h2>Design</h2>
                     </div>
                 </div>
@@ -42,10 +56,11 @@
 
         <section class="clients">
             <div class="clients-inner container-fluid">
-                <div class="clients-content">
+                <div class="clients-content" data-aos="fade-in" data-aos-delay="750">
+
                     <div class="client">
-                        <div class="part">
-                            <p>Client</p>
+                        <div>
+                            <p>Project</p>
                             <h3>
                                 <a href="bogner.html">Bogner</a>
                             </h3>
@@ -54,49 +69,50 @@
                             <img src="images/Bogner.png">
                         </div>
                     </div>
+
                     <div class="client">
-                        <div class="part">
-                            <p>Client</p>
+                        <div>
+                            <p>Project</p>
                             <h3>
-                                <a href="#">Best Secret</a>
+                                <a href="#">Bestsecret</a>
                             </h3>
                         </div>
                     </div>
                     <div class="client">
-                        <div class="part">
-                            <p>Client</p>
+                        <div>
+                            <p>Project</p>
                             <h3>
                                 <a href="#">Edgy Egon</a>
                             </h3>
                         </div>
                     </div>
                     <div class="client">
-                        <div class="part">
-                            <p>Client</p>
+                        <div>
+                            <p>Project</p>
                             <h3>
                                 <a href="#">Best Condom Ever</a>
                             </h3>
                         </div>
                     </div>
                     <div class="client">
-                        <div class="part">
-                            <p>Client</p>
+                        <div>
+                            <p>Project</p>
                             <h3>
                                 <a href="#">Mice Portal</a>
                             </h3>
                         </div>
                     </div>
                     <div class="client">
-                        <div class="part">
-                            <p>Client</p>
+                        <div>
+                            <p>Project</p>
                             <h3>
                                 <a href="#">Dynasty Dry Gin</a>
                             </h3>
                         </div>
                     </div>
                     <div class="client">
-                        <div class="part">
-                            <p>Client</p>
+                        <div>
+                            <p>Project</p>
                             <h3>
                                 <a href="#">Sendmate</a>
                             </h3>
@@ -107,20 +123,20 @@
         </section>
 
         <footer>
-            <div class="footer-inner container-fluid">
-                <div class="cta f-part">
+            <div class="footer-inner container-fluid" data-aos="fade-in" data-aos-delay="250" data-aos-offset="400">
+                <div class="cta">
                     <h4>Want to talk about a project?</h4>
                 </div>
                 <div class="contact">
-                    <div class="contact-part f-part">
+                    <div class="contact-part">
                         <p>Wanna say Hi?</p>
                         <h5><a href="mailto:joy.kuenzl@gmx.de">Joy.kuenzl@gmx.de</a></h5>
                     </div>
-                    <div class="contact-part f-part">
+                    <div class="contact-part">
                         <p>Location</p>
                         <h5>Munich</h5>
                     </div>
-                    <div class="contact-part f-part">
+                    <div class="contact-part">
                         <p>Social Media</p>
                         <h5><a href="#">Instagram</a></h5>
                         <h5><a href="#">Linkedin</a></h5>

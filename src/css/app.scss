@@ -6,6 +6,24 @@ $black: #000;
 $serif: 'Playfair Display', serif;
 $sans-serif: 'Montserrat', sans-serif;
 
+// MEDIA QUERIES //
+@mixin mq-large {
+    @media (max-width: 1200px) { 
+        @content; 
+    }
+}
+@mixin mq-medium {
+    @media (max-width: 900px) { 
+        @content; 
+    }
+}
+@mixin mq-small {
+    @media (max-width: 580px) { 
+        @content; 
+    }
+}
+// MEDIA QUERIES //
+
 // TYPE //
 h2, h3, h4, h5, h6, h8, h9 {
     font-family: $serif;
@@ -13,16 +31,27 @@ h2, h3, h4, h5, h6, h8, h9 {
 h2 {
     text-transform: uppercase;
     font-size: 120px;
+    letter-spacing: 0.025em;
     line-height: .75;
     text-shadow:
     -1px -1px 0 $pink,  
     1px -1px 0 $pink,
     -1px 1px 0 $pink,
     1px 1px 0 $pink;
+    @include mq-large {    
+        font-size: 88px;
+        text-shadow: none;
+    }
+    @include mq-medium {
+        font-size: 40px;
+    }
+    @include mq-small {
+        font-size: 28px;
+    }
 }
 h3 {
     text-transform: uppercase;
-    letter-spacing: 0.015em;
+    letter-spacing: 0.02em;
     font-size: 110px;
     line-height: .75;
     text-shadow:
@@ -30,33 +59,83 @@ h3 {
     1px -1px 0 $pink,
     -1px 1px 0 $pink,
     1px 1px 0 $pink;
+    @include mq-large {    
+        font-size: 72px;
+        text-shadow: none;
+    }
+    @include mq-medium {
+        font-size: 35px;
+    }
+    @include mq-small {
+        font-size: 24px;
+        text-shadow: none;
+        line-height: 1;
+    }
 }
 h4 {
     font-size: 80px;
     line-height: 1;
     font-weight: 700;
+    @include mq-large {    
+        font-size: 56px;
+        line-height: 1.2;
+    }
+    @include mq-medium {
+        font-size: 40px;
+    }
+    @include mq-small {
+        font-size: 24px;
+        line-height: 1.35;
+    }
 }
 h5 {
     font-size: 25px;
     font-weight: 700;
+    @include mq-small {
+        font-size: 16px;
+    }
 }
 h6 {
     font-size: 50px;
     text-transform: uppercase;
+    @include mq-large {    
+        font-size: 32px;
+    }
+    @include mq-small {    
+        font-size: 22px;
+    }
 }
 h7 {
     font-family: $sans-serif;
     font-size: 18px;
     letter-spacing: 0.03em;
     line-height: 1.4;
+    @include mq-large {    
+        font-size: 16px;
+    }
 }
 h8 {
     font-size: 72px;
     text-transform: uppercase;
+    @include mq-large {    
+        font-size: 56px;
+    }
+    @include mq-medium {
+        font-size: 40px;
+    }
+    @include mq-small {
+        font-size: 30px;
+    }
 }
 h9 {
     font-size: 40px;
     text-transform: uppercase;
+    @include mq-large {    
+        font-size: 24px;
+    }
+    @include mq-small {
+        font-size: 18px;
+    }
 }
 a {
     color: $pink;
@@ -71,6 +150,12 @@ a.bold-link {
 .container-fluid {
     height: 100%;
     padding: 0 170px 0 55px;
+    @include mq-large {    
+        padding: 0 55px 0 55px;
+    }
+    @include mq-small {
+        padding: 0 20px 0 20px;
+    }
 }
 // GLOBAL //
 
@@ -78,22 +163,6 @@ a.bold-link {
 @keyframes headerFade {
     0% {
         opacity: 0;
-        transform: translateY(-85px);
-    }
-    50% {
-        transform: translateY(0);
-    }
-    100% {
-        opacity: 1;
-    }
-}
-@keyframes fadeIn {
-    0% {
-        opacity: 0;
-        transform: translateY(70px);
-    }
-    50% {
-        transform: translateY(0);
     }
     100% {
         opacity: 1;
@@ -142,6 +211,11 @@ header {
             position: absolute;
             left: 50%;
             transform: translateX(-50%);
+            @include mq-small {
+                position: relative;
+                left: 0;
+                transform: none;
+            }
         }
         .header-nav {
             display: flex;
@@ -150,26 +224,112 @@ header {
                     margin-left: 76px;
                 }
             }
+            @include mq-small {
+                display: none;
+            }
+        }
+        .mobile-nav {
+            display: none;
+            span {
+                background-color: $pink;
+                width: 18px;
+                height: 2px;
+                display: block;
+                margin-bottom: 6px;
+                &:last-child {
+                    margin-bottom: 0;
+                }
+            }
+            &.black {
+                span {
+                    background-color: $black;
+                }
+            }
+            @include mq-small {
+                display: inline-block;
+            }
+        }
+        @include mq-large {    
+            padding: 32px 55px;
+        }
+        @include mq-small {
+            justify-content: space-between;
+            align-items: center;
+            padding: 32px 20px;
+        }
+    }
+}
+
+.mobile-menu {
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    z-index: 3;
+    top: 0;
+    left: 0;
+    background-color: $black;
+    opacity: 0;
+    pointer-events: none;
+    transition: all ease .4s;
+    -webkit-transition: all ease .4s;
+    .mobile-menu-inner {
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        nav {
+            a {
+                color: $pink;
+                display: block;
+                margin: 24px 0;
+                text-align: center;
+                font-size: 24px;
+            }
+        }
+    }
+    &.visible {
+        opacity: 1;
+        pointer-events: all;
+    }
+    &.pink {
+        background-color: $pink;
+        a {
+            color: $black !important;
         }
     }
 }
 
 section.services {
     margin: 110px 0;
+    @include mq-medium {
+        margin-bottom: 72px;
+    }
+    @include mq-small {
+        margin: 96px 0 56px 0;
+    }
     .services-inner {
         .service-content {
             .service {
                 margin-bottom: 20px;
+                @include mq-small {
+                    margin-bottom: 14px;
+                }
                 &:last-child {
                     margin-bottom: 0;
                 }
                 &:nth-child(2) {
                     margin-left: 220px;
+                    @include mq-medium {
+                        margin-left: 0;
+                    }
                 }
                 h2 {
                     &::before {
                         content: "/";
                         margin-right: 66px;
+                        @include mq-medium {
+                            margin-right: 24px;
+                        }
                     }
                 }
             }
@@ -179,6 +339,9 @@ section.services {
 
 section.clients {
     margin-bottom: 110px;
+    @include mq-small {
+        margin-bottom: 40px;
+    }
     .clients-inner {
         .clients-content {
             display: flex;
@@ -189,6 +352,21 @@ section.clients {
                 a {
                     transition: all ease-in-out .3s;
                 }
+                p {
+                    @include mq-medium {
+                        font-size: 14px;
+                        margin-bottom: 2px;
+                    }
+                    @include mq-small {
+                        display: none;
+                    }
+                }
+                @include mq-medium {
+                    margin-bottom: 20px;
+                }
+                @include mq-small {
+                    margin-bottom: 14px;
+                }
                 .hover-image {
                     position: fixed;
                     z-index: 4;
@@ -198,7 +376,7 @@ section.clients {
                     transform: translate(-50%, -50%);
                     opacity: 0;
                     transition: all ease .4s;
-                    transition-delay: .25s;
+                    transition-delay: .1s;
                 }
                 &:hover {
                     a {
@@ -208,9 +386,18 @@ section.clients {
                         -1px 1px 0 $pink,
                         1px 1px 0 $pink;
                         color: $black;
+                        @include mq-large {
+                            color: $pink;
+                        }
+                        @include mq-large {
+                            text-shadow: none;
+                        }
                     }
                     .hover-image {
                         opacity: 1;
+                        @include mq-medium {    
+                            opacity: 0;
+                        }
                     }
                 }
             }
@@ -223,10 +410,6 @@ section.about {
     .about-inner {
         padding: 0 40px 0 200px;
         .about-content {
-            opacity: 0;
-            animation: fadeIn 2s ease;
-            //animation-delay: .5s;
-            animation-fill-mode: forwards;
             .about-copy {
                 max-width: 900px;
                 margin-bottom: 80px;
@@ -235,6 +418,12 @@ section.about {
                     &:last-child {
                         margin-bottom: 0;
                     }
+                    @include mq-medium {
+                        margin-bottom: 32px;
+                    }
+                }
+                @include mq-medium {
+                    margin-bottom: 56px;
                 }
             }
             .about-info {
@@ -245,18 +434,26 @@ section.about {
                 }
             }
         }
+        @include mq-large {    
+            padding: 0 55px;
+        }
+        @include mq-small {
+            padding: 0 20px;
+        }
+    }
+    @include mq-small {    
+        margin: 96px 0 56px 0;
     }
 }
 
 section.project {
     margin: 140px 0 110px 0;
+    @include mq-small {
+        margin: 96px 0 12px 0;
+    }
     .project-inner {
         padding: 0 0 0 200px;
         .project-content {
-            opacity: 0;
-            animation: fadeIn 2s ease;
-            //animation-delay: .5s;
-            animation-fill-mode: forwards;
             .project-copy {
                 margin-bottom: 110px;
                 padding-right: 40px;
@@ -265,6 +462,19 @@ section.project {
                 }
                 h8 {
                     margin-bottom: 120px;
+                    @include mq-medium {    
+                        margin-bottom: 40px;
+                    }
+                    @include mq-small {
+                        margin-bottom: 20px;
+                    }
+                }
+                @include mq-large {    
+                    padding: 0 55px;
+                }
+                @include mq-small {
+                    padding: 0 20px;
+                    margin-bottom: 56px;
                 }
             }
             .project-image {
@@ -278,7 +488,13 @@ section.project {
                     object-fit: cover;
                     object-position: center;
                 }
+                @include mq-small {
+                    margin-bottom: 12px;
+                }
             }
+        }
+        @include mq-large {    
+            padding: 0;
         }
     }
 }
@@ -302,7 +518,12 @@ footer {
         align-items: center;
         justify-content: space-between;
         .cta {
-            max-width: 600px;
+            max-width: 640px;
+            padding-right: 40px;
+            @include mq-small {
+                margin-bottom: 24px;
+                padding-right: 0;
+            }
         }
         .contact {
             .contact-part {
@@ -312,28 +533,22 @@ footer {
                 }
                 p {
                     margin-bottom: 8px;
+                    @include mq-small {
+                        margin-bottom: 4px;
+                        font-size: 14px;
+                    }
+                }
+                @include mq-medium {
+                    margin-bottom: 20px;
                 }
             }
         }
-    }
-}
-
-.f-part {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: all ease .6s;
-    &.in-viewport {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.part {
-    opacity: 0;
-    transform: translateY(70px);
-    transition: all ease .8s;
-    &.in-viewport {
-        opacity: 1;
-        transform: translateY(0);
+        @include mq-large {    
+            padding: 100px;
+        }
+        @include mq-small {
+            padding: 64px 40px;
+            display: inline-block;
+        }
     }
 }
